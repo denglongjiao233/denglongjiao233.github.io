@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机选择-选择强迫症用</title>
+    <style type="text/css">
+    #content{
+        width: 500px;
+        margin: 0 auto;
+        border: 1px solid rgb(180, 176, 176);
+        text-align: center;
+    }
+    #addBtn{
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    #start{
+        margin-bottom: 20px;
+    }
+    </style>
+    <script>
+    window.onload = function(){
+    var addBtn = document.getElementById("addBtn");
+    var start = document.getElementById("start");
+    var inputs = document.getElementById("inputs");
+
+    function randomEvent(events){
+             var result = Math.floor(Math.random()*events.length);
+             alert(events[result].value);                   
+    } 
+
+        addBtn.onclick = function(){
+            var addBr = document.createElement("br");
+            inputs.appendChild(addBr);
+            var addNode = document.createElement("input");
+            addNode.setAttribute("type","text");
+            inputs.appendChild(addNode);
+        };
+
+        function check(){
+            return function(){
+                var events = document.getElementsByTagName("input");
+                var flag = true; 
+                for(var i=0;i<events.length;i++){
+                    if(events[i].value == ""){
+                        alert("不要为空");
+                        flag = false;
+                        break;
+                    }
+                }
+                if(flag){
+                    randomEvent(events);
+                }  
+            };
+        }
+
+        start.addEventListener("click",check());
+};</script>
+</head>
+<body>
+    <div id="content">
+        <h1>请输入你所纠结选择的事物：</h1>
+        <div id="inputs">
+            <input type="text" > 
+        </div>
+        <button id="addBtn">添加事物</button>
+        <br>
+        <button id="start">开始随机抽取</button>
+    </div>
+</body>
+</html>
